@@ -1,0 +1,20 @@
+class Solution {
+ListNode* prev = NULL;
+public:
+    bool isPalindrome(ListNode* head) {
+        prev = head;
+        return helper(head);
+    }
+    
+    bool helper(ListNode* head) {
+        if (head == NULL) {
+            return true;
+        }
+        bool res = helper(head->next);
+        if (head->val != prev->val) {
+            res = false;
+        }
+        prev = prev->next;
+        return res;
+    }
+};
